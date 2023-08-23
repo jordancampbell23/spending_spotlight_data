@@ -328,6 +328,8 @@ rev_data <- ss_data_cpi |>
 
 # Get teacher salary data from input_data/salary_data.csv
 salary_data <- read_csv("input_data/salary_data.csv") |>
+  filter(Year != 2021) |>
+  mutate(`Salary Adj` = `Salary` * last(CPI) / CPI) |>
   select(Year, State, `Salary Adj`)
 
 # Combine revenue and salary data into one data frame
